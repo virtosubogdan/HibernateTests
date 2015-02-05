@@ -4,9 +4,6 @@ package com.example.hibernatetests.data.bears.entities;
 import javax.persistence.*;
 import java.util.Set;
 
-/**
- * Created by bogdan.virtosu on 04.02.2015.
- */
 @Entity
 @Table(name = "BEAR_CONTEXT")
 public class BearContext {

@@ -4,24 +4,23 @@ import javax.persistence.*;
 import java.util.LinkedHashSet;
 import java.util.Set;
 
-@Entity
-@Table(name = "PAPA_BEAR")
-public class PapaBear {
+@Entity(name = "BABY_BEAR")
+public class BabyBear {
 
     @EmbeddedId
-    private PapaBearPK embeddedId;
+    private BabyBearPK embeddedId;
 
     @Column
     private String name;
 
-    @OneToMany(mappedBy="embeddedId.papaBear", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<MamaBear> mamaBears = new LinkedHashSet<MamaBear>();
+    @OneToMany(mappedBy = "embeddedId.babyBear", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<BearToy> bearToys = new LinkedHashSet<>();
 
-    public PapaBearPK getEmbeddedId() {
+    public BabyBearPK getEmbeddedId() {
         return embeddedId;
     }
 
-    public void setEmbeddedId(PapaBearPK embeddedId) {
+    public void setEmbeddedId(BabyBearPK embeddedId) {
         this.embeddedId = embeddedId;
     }
 
@@ -33,12 +32,12 @@ public class PapaBear {
         this.name = name;
     }
 
-    public Set<MamaBear> getMamaBears() {
-        return mamaBears;
+    public Set<BearToy> getBearToys() {
+        return bearToys;
     }
 
-    public void setMamaBears(Set<MamaBear> mamaBears) {
-        this.mamaBears = mamaBears;
+    public void setBearToys(Set<BearToy> bearToys) {
+        this.bearToys = bearToys;
     }
 
     @Override
@@ -46,9 +45,9 @@ public class PapaBear {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PapaBear papaBear = (PapaBear) o;
+        BabyBear babyBear = (BabyBear) o;
 
-        if (embeddedId != null ? !embeddedId.equals(papaBear.embeddedId) : papaBear.embeddedId != null) return false;
+        if (embeddedId != null ? !embeddedId.equals(babyBear.embeddedId) : babyBear.embeddedId != null) return false;
 
         return true;
     }
@@ -60,9 +59,10 @@ public class PapaBear {
 
     @Override
     public String toString() {
-        return "PapaBear{" +
+        return "BabyBear{" +
                 "embeddedId=" + embeddedId +
                 ", name='" + name + '\'' +
+                ", bearToys=" + bearToys +
                 '}';
     }
 }

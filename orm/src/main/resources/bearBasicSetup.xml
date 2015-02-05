@@ -1,5 +1,15 @@
 <dataset>
-    <bear_context bear_context_id="1"></bear_context>
-    <papa_bear bear_context_id="1" papa_bear_id="1">
-    </papa_bear>
+    <bear_context bear_context_id="1"/>
+
+    <papa_bear bear_context_id="1" papa_bear_id="1" name="Prime Bear"/>
+    <papa_bear bear_context_id="1" papa_bear_id="2" name="Scar"/>
+
+    <mama_bear bear_context_id="1" papa_bear_id="1" mama_bear_id="1" name="Good Mama"/>
+    <mama_bear bear_context_id="1" papa_bear_id="1" mama_bear_id="2" name="Not used"/>
+
+    <baby_bear bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="1" name="B1"/>
+    <baby_bear bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="2" name="B2"/>
+
+    <bear_toy bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="1" bear_toy_id="1" name="PS4"/>
+    <bear_toy bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="1" bear_toy_id="2" name="WII"/>
 </dataset>

@@ -3,9 +3,6 @@ package com.example.hibernatetests.data.bears.entities;
 import javax.persistence.*;
 import java.io.Serializable;
 
-/**
- * Created by bogdan.virtosu on 04.02.2015.
- */
 @Embeddable
 public class PapaBearPK implements Serializable {
 

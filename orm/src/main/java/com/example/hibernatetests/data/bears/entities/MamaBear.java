@@ -5,23 +5,23 @@ import java.util.LinkedHashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "PAPA_BEAR")
-public class PapaBear {
+@Table(name = "MAMA_BEAR")
+public class MamaBear {
 
     @EmbeddedId
-    private PapaBearPK embeddedId;
+    private MamaBearPK embeddedId;
 
     @Column
     private String name;
 
-    @OneToMany(mappedBy="embeddedId.papaBear", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
-    private Set<MamaBear> mamaBears = new LinkedHashSet<MamaBear>();
+    @OneToMany(mappedBy = "embeddedId.mamaBear", cascade = CascadeType.ALL, orphanRemoval = true)
+    private Set<BabyBear> babyBears = new LinkedHashSet<>();
 
-    public PapaBearPK getEmbeddedId() {
+    public MamaBearPK getEmbeddedId() {
         return embeddedId;
     }
 
-    public void setEmbeddedId(PapaBearPK embeddedId) {
+    public void setEmbeddedId(MamaBearPK embeddedId) {
         this.embeddedId = embeddedId;
     }
 
@@ -33,12 +33,12 @@ public class PapaBear {
         this.name = name;
     }
 
-    public Set<MamaBear> getMamaBears() {
-        return mamaBears;
+    public Set<BabyBear> getBabyBears() {
+        return babyBears;
     }
 
-    public void setMamaBears(Set<MamaBear> mamaBears) {
-        this.mamaBears = mamaBears;
+    public void setBabyBears(Set<BabyBear> babyBears) {
+        this.babyBears = babyBears;
     }
 
     @Override
@@ -46,9 +46,9 @@ public class PapaBear {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        PapaBear papaBear = (PapaBear) o;
+        MamaBear mamaBear = (MamaBear) o;
 
-        if (embeddedId != null ? !embeddedId.equals(papaBear.embeddedId) : papaBear.embeddedId != null) return false;
+        if (embeddedId != null ? !embeddedId.equals(mamaBear.embeddedId) : mamaBear.embeddedId != null) return false;
 
         return true;
     }
@@ -60,7 +60,7 @@ public class PapaBear {
 
     @Override
     public String toString() {
-        return "PapaBear{" +
+        return "MamaBear{" +
                 "embeddedId=" + embeddedId +
                 ", name='" + name + '\'' +
                 '}';
