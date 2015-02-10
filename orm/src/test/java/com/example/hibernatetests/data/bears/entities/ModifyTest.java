@@ -12,6 +12,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
@@ -30,6 +31,7 @@ import static org.junit.Assert.assertEquals;
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
 @DatabaseSetup("classpath:bearBasicSetup.xml")
+//@Sql({"src/test/resources/bearsDDL.sql"})
 public class ModifyTest {
 
     @Autowired
@@ -43,6 +45,13 @@ public class ModifyTest {
     public void changePapaBearName() {
         assertEquals(bearGrylls.findPapaBear(1L, 2L).getName(), "Scar");
 
+        changePapaBearNameTransaction();
+
+        assertEquals(bearGrylls.findPapaBear(1L, 2L).getName(), "NotScar");
+    }
+
+    @Transactional
+    private void changePapaBearNameTransaction() {
         PapaBearTO papaBearTO = new PapaBearTO(1L, 1L, "LionKing");
         PapaBearTO papaBearTO2 = new PapaBearTO(1L, 2L, "NotScar");
 
@@ -50,8 +59,6 @@ public class ModifyTest {
         papaBearTOs.add(papaBearTO);
         papaBearTOs.add(papaBearTO2);
         bearService.saveTheBears(papaBearTOs, 1L);
-
-        assertEquals(bearGrylls.findPapaBear(1L, 2L).getName(), "NotScar");
     }
 
     @Test
@@ -66,6 +73,7 @@ public class ModifyTest {
         List<PapaBearTO> papaBearTOs = new LinkedList<>();
         papaBearTOs.add(papaBearTO);
         bearService.saveTheBears(papaBearTOs, 1L);
+
 
         assertEquals(bearGrylls.findMamaBear(1L, 1L, 2L).getName(), "Test used");
     }

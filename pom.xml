@@ -34,6 +34,10 @@
         <jackson2.version>2.4.3</jackson2.version>
 
         <spring.security.version>3.2.5.RELEASE</spring.security.version>
+
+        <postgresql.jdbc.driver.version>9.3-1102-jdbc41</postgresql.jdbc.driver.version>
+
+        <tomcat.connection.pool.version>8.0.14</tomcat.connection.pool.version>
     </properties>
 
     <dependencyManagement>
@@ -143,13 +147,13 @@
             <dependency>
                 <groupId>org.springframework</groupId>
                 <artifactId>spring-test</artifactId>
-                <version>3.2.3.RELEASE</version>
+                <version>${org.springframework.version}</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
                 <groupId>com.github.springtestdbunit</groupId>
                 <artifactId>spring-test-dbunit</artifactId>
-                <version>1.0.0</version>
+                <version>1.1.0</version>
                 <scope>test</scope>
             </dependency>
             <dependency>
@@ -170,6 +174,26 @@
                 <groupId>com.jolbox</groupId>
                 <artifactId>bonecp</artifactId>
                 <version>${bonecp.version}</version>
+            </dependency>
+
+            <!-- PostgreSQL JDBC driver -->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>${postgresql.jdbc.driver.version}</version>
+            </dependency>
+
+            <!-- Tomcat JDBC connection pooling -->
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-jdbc</artifactId>
+                <version>${tomcat.connection.pool.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>org.apache.tomcat</groupId>
+                <artifactId>tomcat-juli</artifactId>
+                <version>${tomcat.connection.pool.version}</version>
             </dependency>
         </dependencies>
     </dependencyManagement>

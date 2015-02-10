@@ -12,4 +12,6 @@
 
     <bear_toy bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="1" bear_toy_id="1" name="PS4"/>
     <bear_toy bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="1" bear_toy_id="2" name="WII"/>
+
+    <deer_friend deer_id="1" bear_context_id="1" papa_bear_id="1" mama_bear_id="1" baby_bear_id="1"/>
 </dataset>

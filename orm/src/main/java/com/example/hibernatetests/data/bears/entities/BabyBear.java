@@ -16,6 +16,9 @@ public class BabyBear {
     @OneToMany(mappedBy = "embeddedId.babyBear", cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<BearToy> bearToys = new LinkedHashSet<>();
 
+    @OneToMany(mappedBy = "babyBear")
+    private Set<DeerFriend> deerFriends;
+
     public BabyBearPK getEmbeddedId() {
         return embeddedId;
     }
@@ -38,6 +41,14 @@ public class BabyBear {
 
     public void setBearToys(Set<BearToy> bearToys) {
         this.bearToys = bearToys;
+    }
+
+    public Set<DeerFriend> getDeerFriends() {
+        return deerFriends;
+    }
+
+    public void setDeerFriends(Set<DeerFriend> deerFriends) {
+        this.deerFriends = deerFriends;
     }
 
     @Override
