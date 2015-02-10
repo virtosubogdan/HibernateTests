@@ -103,11 +103,9 @@
 
             <dependency>
                 <groupId>org.slf4j</groupId>
-                <artifactId>jcl-over-slf4j</artifactId>
+                <artifactId>slf4j-simple</artifactId>
                 <version>${org.slf4j.version}</version>
-                <scope>runtime</scope>
             </dependency>
-
 
             <dependency>
                 <groupId>javax.servlet</groupId>

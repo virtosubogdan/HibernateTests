@@ -6,13 +6,12 @@ import com.example.hibernatetests.data.bears.to.BabyBearTO;
 import com.example.hibernatetests.data.bears.to.MamaBearTO;
 import com.example.hibernatetests.data.bears.to.PapaBearTO;
 import com.github.springtestdbunit.DbUnitTestExecutionListener;
-import com.github.springtestdbunit.annotation.DatabaseSetup;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestExecutionListeners;
-import org.springframework.test.context.jdbc.Sql;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.support.DirtiesContextTestExecutionListener;
@@ -30,8 +29,8 @@ import static org.junit.Assert.assertEquals;
         DirtiesContextTestExecutionListener.class,
         TransactionalTestExecutionListener.class,
         DbUnitTestExecutionListener.class})
-@DatabaseSetup("classpath:bearBasicSetup.xml")
-//@Sql({"src/test/resources/bearsDDL.sql"})
+// This works, but it will prevent jdbc:initialize-database
+//@DatabaseSetup("classpath:bearBasicSetup.xml")
 public class ModifyTest {
 
     @Autowired
@@ -42,6 +41,7 @@ public class ModifyTest {
 
     @Test
     @Transactional
+    @Rollback(false)
     public void changePapaBearName() {
         assertEquals(bearGrylls.findPapaBear(1L, 2L).getName(), "Scar");
 
@@ -63,6 +63,7 @@ public class ModifyTest {
 
     @Test
     @Transactional
+    @Rollback(false)
     public void changeMamaBearName() {
         assertEquals(bearGrylls.findMamaBear(1L, 1L, 2L).getName(), "Not used");
 
@@ -80,6 +81,7 @@ public class ModifyTest {
 
     @Test
     @Transactional
+    @Rollback(false)
     public void changeBabyBearName() {
         assertEquals(bearGrylls.findBabyBear(1L, 1L, 1L, 1L).getName(), "B1");
 

@@ -14,6 +14,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Component;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -28,12 +30,16 @@ public class SimpleBearService implements BearService {
     @Autowired
     private PapaBearDAO papaBearDAO;
 
+    @PersistenceContext
+    private EntityManager entityManager;
+
     @Override
     public void saveTheBears(List<PapaBearTO> papaBearTOs, Long bearContextId) {
         for (PapaBearTO papaBearTO : papaBearTOs) {
             PapaBear papaBear = bearGrylls.findPapaBear(papaBearTO.getBearContextId(), papaBearTO.getPapaBearId());
             if (papaBear != null) {
                 papaBear.getMamaBears().clear();
+//                entityManager.flush();
             } else {
                 papaBear = bearGrylls.createPapaBear(bearContextId, papaBearTO);
                 papaBear.setMamaBears(new HashSet<MamaBear>());
